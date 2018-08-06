@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Router from './components/Router';
 
 import { Pages } from './lib/data/pages';
+import { PagesContainer } from './pages';
 
 class App extends Component {
   state = {
@@ -28,18 +29,21 @@ class App extends Component {
 
     this.setState({ pageData, dataLoaded: true });
   }
+
   render() {
+    const { entries } = this.state.pageData;
     if (this.state.dataLoaded) {
       return (
         <div className="App">
-          <Header data={this.state.pageData.entries} />
+          <Header data={entries} />
           <Link to="/about">About</Link>
           <div className="Body">
-            <Router
+            {/* <Router
               routes={[
                 { path: '/about', component: () => <div>Look, I'm a div!</div> }
               ]}
-            />
+            /> */}
+            <PagesContainer data={entries} />
           </div>
         </div>
       );
